@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+ <img class="rounded-circle account-img" src="{{ user_prof.profile.profile.url }}" width="100%">
+</div>
+                    
+ {{ user_prof.username }}
+
+ {{user_posts.count}}
+    
+ <h5>{{ user.profile.name }}</h5>
+ {{ user.profile.bio }}
+
+        {% for image in user_posts %}
+ <img src="{{image.image.url}}" alt="{{image.caption}}" class="card-img">
+{{image.comments.count}}
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
+

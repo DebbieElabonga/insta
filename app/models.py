@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from tinymce.models import HTMLField
 
 # Create your models here.
 class Profile(models.Model):
@@ -23,6 +24,7 @@ class Post(models.Model):
     date = models.DateTimeField(auto_now_add=True, null=True)
     user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='posts')
     likes = models.ManyToManyField(User, related_name='likes', blank=True, )
+    
 
 
     def save_image(self):
