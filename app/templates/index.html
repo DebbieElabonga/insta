@@ -3,4 +3,13 @@
 {% block content %}
 {{block.super}}
 <h1>hello Stranger</h1>
+{% for post in posts %}
+
+<!-- {{post.user}} -->
+<!-- {{ post.name}} -->
+
+{{post.user.user.username}}<br>
+ <img class="card-img-top" src="{{post.image.url}}" alt="{{post.name}}">
+
+{% endfor %}
 {% endblock %}
