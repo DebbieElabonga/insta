@@ -56,13 +56,15 @@ class Comment(models.Model):
         self.save()
         
     def __str__(self):
-        return self.image
+        return self.comment
     def delete_comment(self):
         self.delete()
     
     @classmethod
     def get_comments(cls,image_id):
         return cls.objects.filter(post__id=image_id).all()
+
+    
 
 
 

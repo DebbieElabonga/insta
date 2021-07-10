@@ -5,9 +5,9 @@ from django.conf.urls.static import static
 
 urlpatterns = [
 
-    path('', views.welcome , name='index')
+    path('', views.welcome , name='index'),
+    path(r'comments/<id>', views.comment, name='comments'),
     
-
 
 ]
 if settings.DEBUG:

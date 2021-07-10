@@ -3,6 +3,7 @@
 {% block content %}
 {{block.super}}
 <h1>hello Stranger</h1>
+<div class="col-md-6">
 {% for post in posts %}
 
 <!-- {{post.user}} -->
@@ -11,13 +12,14 @@
 <!-- <b>{{post.user.user.username}}</b>
 <br>
  <img class="card-img-top" src="{{post.image.url}}" alt="{{post.name}}"> -->
-
-        <img src="{{post.user.profile.url}}" 
+ <div class="row p-2 card-title">
+        <img src="{{post.user.profile.url}}" class="rounded-circle border ml-3 mt-2  mr-3"
             alt="{{post.user.user.username}}" width="35" height="35">
-        <p class="p-2">{{post.user.user.username}}</p>
+        <p class="p-2">{{post.user.user.username}}</p><br>
     </div>
     <img class="card-img-top" src="{{post.image.url}}" alt="{{post.name}}"width="200" height="200">
-    <div class="iconic ml-2">
-
+    <br>
+   <b><i>This post has {{post.comments.count}}comments</i></b>
+    {{comment.comment}}
 {% endfor %}
 {% endblock %}
