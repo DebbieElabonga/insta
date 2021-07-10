@@ -9,6 +9,7 @@ urlpatterns = [
     path('', views.welcome , name='index'),
     path(r'comments/<id>', views.comment, name='comments'),
     path(r'user_profile/<username>', user_profile, name='user_profile'),
+    path('new/image/', views.upload_image, name='new-image'),
     
 
 ]

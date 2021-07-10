@@ -26,4 +26,15 @@ def user_profile(request, username):
     return render(request, 'user_profile.html', context)
 
 
-
+def upload_image(request):
+    current_user = request.user
+    if request.method == 'POST':
+        form = PostForm(request.POST,request.FILES)
+        if form.is_valid():
+            image = form.save(commit=False)
+            image.user = current_user
+            image.save()
+        return redirect('index')
+    else:
+        form = PostForm()
+    return render(request,'create_post.html',{"form":form})
