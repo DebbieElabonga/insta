@@ -7,6 +7,12 @@ class Profile(models.Model):
     bio = models.TextField(max_length=500, blank=True, default='No bio')
     profile = models.ImageField(upload_to='images/', default='')
     
+    def save_profile(self):
+        self.save()
+
+    @classmethod
+    def search_profile(cls,name):
+        return cls.objects.filter(user__username__icontains=name).all()
     def __str__(self):
         return self.user.username
 
@@ -24,9 +30,7 @@ class Post(models.Model):
     
     def delete_image(self):
         self.delete()
-    @classmethod
-    def update_caption(self):
-        Post.objects.filter(id = 2).update(first_name ='Kim')
+    
 
     def __str__(self):
         return self.name
@@ -48,8 +52,17 @@ class Comment(models.Model):
     user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='comments')
     created = models.DateTimeField(auto_now_add=True, null=True)
 
+    def save_comment(self):
+        self.save()
+        
     def __str__(self):
-        return self.comment
+        return self.image
+    def delete_comment(self):
+        self.delete()
+    
+    @classmethod
+    def get_comments(cls,image_id):
+        return cls.objects.filter(post__id=post_id).all()
 
 
 
