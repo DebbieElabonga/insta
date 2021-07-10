@@ -8,8 +8,16 @@
 <!-- {{post.user}} -->
 <!-- {{ post.name}} -->
 
-{{post.user.user.username}}<br>
- <img class="card-img-top" src="{{post.image.url}}" alt="{{post.name}}">
+<!-- <b>{{post.user.user.username}}</b>
+<br>
+ <img class="card-img-top" src="{{post.image.url}}" alt="{{post.name}}"> -->
+
+        <img src="{{post.user.profile.url}}" 
+            alt="{{post.user.user.username}}" width="35" height="35">
+        <p class="p-2">{{post.user.user.username}}</p>
+    </div>
+    <img class="card-img-top" src="{{post.image.url}}" alt="{{post.name}}"width="200" height="200">
+    <div class="iconic ml-2">
 
 {% endfor %}
 {% endblock %}
