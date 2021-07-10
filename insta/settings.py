@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'app',
     'bootstrap3',
     'tinymce',
+    'widget_tweaks'
 ]
 
 MIDDLEWARE = [
