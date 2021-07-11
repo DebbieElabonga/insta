@@ -2,7 +2,7 @@ from django.urls import path
 from . import views
 from django.conf import settings
 from django.conf.urls.static import static
-from .views import user_profile,signup, profile
+from .views import user_profile,signup, profile,searchuser
 
 
 urlpatterns = [
@@ -13,7 +13,7 @@ urlpatterns = [
     path('signup/', signup , name='signup'),
     path('user_profile/<username>/', user_profile, name='user_profile'),
     path('profile/', profile, name='profile'),
-    
+    path('search/',views.searchuser ,name='searchuser'),
     
 	
 

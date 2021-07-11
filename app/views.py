@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect, get_object_or_404
-from .models import Profile, Post, Comment
+from .models import Profile, Post, Comment,Follow
 from django.contrib.auth.models import User
 from .forms import PostForm, SignUpForm, UserCreationForm, UpdateUserProfileForm
 from django.contrib.auth import login, authenticate
@@ -100,3 +100,14 @@ def user_profile(request, username):
     }
     return render(request, 'user_profile.html', context)
 
+@login_required(login_url="login")
+def searchuser(request):
+    if 'username' in request.GET and request.GET["username"]:
+        search_name = request.GET.get("username")
+        searched_profiles = Profile.search_profile(search_name)
+        message = f"{search_name}"
+
+        return render(request,"search.html",{"message":message,"searched_profiles":searched_profiles})
+    else:
+        message = "Enter a username to search"
+        return render(request,"search.html",{"message":message})
