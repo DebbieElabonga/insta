@@ -44,14 +44,14 @@
             </div>
         </div>
     </div>
-    <hr class="mt-4">
+    <hr class="md-4">
     <div class="card-columns">
         {% for image in images %}
         <div class="card">
             <div class="card-body">
                 <img src="{{image.image.url}}" alt="{{image.caption}}" class="card-img">
-                <p>{{image.likes.count}}<i class="far fa-heart mx-auto"
-                        aria-hidden="true"></i>  {{image.comments.count}}<i class="far fa-comment hearticon mx-auto"
+                <p>{{image.likes.count}}likes<i class="far fa-heart mx-auto"
+                        aria-hidden="true"></i>  {{image.comments.count}}comments<i class="far fa-comment hearticon mx-auto"
                         aria-hidden="true"></i></p>
             </div>
         </div>

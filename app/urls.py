@@ -12,7 +12,8 @@ urlpatterns = [
     path('new/image/', views.upload_image, name='new-image'),
     path('signup/', signup , name='signup'),
     path('user_profile/<username>/', user_profile, name='user_profile'),
-    path('profile/<username>/', profile, name='profile'),
+    path('profile/', profile, name='profile'),
+    
     
 	
 

@@ -13,10 +13,11 @@
 
       {% if user.is_authenticated %}
       <li>
-        <a href="{%url 'new-image'%}">New Post</a>
+        <a href="{%url 'new-image'%}">New Post</a><br>
       </li>
-      <a class="nav-item nav-link active"> <img src="{{ user.profile.image.url }}" style="width: 19px;"
+      <a class="nav-item nav-link active"href ="{% url 'profile'%}"> <img src="{{ profile.image.url }}" style="width: 19px;"
           class="rounded-circle" alt="">{{ user.username }}</a>
+          <br>
       <a class="nav-item nav-link active" href="{% url 'logout' %}">
         <i class="fas fa-sign-out-alt"></i>Logout
       </a>

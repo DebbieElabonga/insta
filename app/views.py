@@ -1,10 +1,12 @@
 from django.shortcuts import render,redirect, get_object_or_404
-from .models import Profile, Post, Comment, Follow
+from .models import Profile, Post, Comment
 from django.contrib.auth.models import User
 from .forms import PostForm, SignUpForm, UserCreationForm, UpdateUserProfileForm
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate
+
+
 
 # Create your views here.
 def welcome(request):
@@ -60,7 +62,7 @@ def signup(request):
     return render(request, 'signup.html', {'form': form})
 
 @login_required(login_url='login')
-def profile(request, username):
+def profile(request):
     images = request.user.profile.posts.all()
     if request.method == 'POST':
         prof_form = UpdateUserProfileForm(request.POST, request.FILES, instance=request.user.profile)
