@@ -1,6 +1,6 @@
 {% load static %}
 
-<nav class="navbar navbar-expand-lg navbar-dark  pl-5 pr-5" style="background-color: #f9b941;">
+<nav class="navbar navbar-expand-lg navbar-dark  pl-5 pr-5" style="background-color: #111110;">
   <a class="navbar-brand" href="{% url 'index' %}" style="font-family: 'Redressed', cursive; font-size:32px">Instagram</a>
   <a class="nav-item nav-link active text-white" href="{% url 'index' %}">Home</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
@@ -9,8 +9,12 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav ml-auto">
+      
 
       {% if user.is_authenticated %}
+      <li>
+        <a href="{%url 'new-image'%}">New Post</a>
+      </li>
       <a class="nav-item nav-link active"> <img src="{{ user.profile.image.url }}" style="width: 19px;"
           class="rounded-circle" alt="">{{ user.username }}</a>
       <a class="nav-item nav-link active" href="{% url 'logout' %}">

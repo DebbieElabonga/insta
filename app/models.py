@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from tinymce.models import HTMLField
 
+
+
 # Create your models here.
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -16,6 +18,7 @@ class Profile(models.Model):
         return cls.objects.filter(user__username__icontains=name).all()
     def __str__(self):
         return self.user.username
+
 
 class Post(models.Model):
     image = models.ImageField(upload_to='posts/')
