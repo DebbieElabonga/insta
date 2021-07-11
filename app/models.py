@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 from tinymce.models import HTMLField
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 
 
@@ -18,6 +20,11 @@ class Profile(models.Model):
         return cls.objects.filter(user__username__icontains=name).all()
     def __str__(self):
         return self.user.username
+@receiver(post_save, sender=User)
+def update_user_profile(sender, instance, created, **kwargs):
+    if created:
+        Profile.objects.create(user=instance)
+    instance.profile.save()
 
 
 class Post(models.Model):
@@ -28,10 +35,14 @@ class Post(models.Model):
     user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='posts')
     likes = models.ManyToManyField(User, related_name='likes', blank=True, )
     
-
+    class Meta:
+        ordering = ["-pk"]
 
     def save_image(self):
         self.save()
+
+    def get_absolute_url(self):
+        return f"/post/{self.id}"
     
     def delete_image(self):
         self.delete()
@@ -68,6 +79,9 @@ class Comment(models.Model):
     @classmethod
     def get_comments(cls,image_id):
         return cls.objects.filter(post__id=image_id).all()
+
+    class Meta:
+        ordering = ["-pk"]
 
     
 

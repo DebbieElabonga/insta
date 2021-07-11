@@ -1,21 +1,24 @@
-{% extends 'base.html' %}
+{%extends 'base.html'%}
+{% load bootstrap3 %}
+{%block styles%}
+{%bootstrap_css%}
+{%endblock%}
+
 {% block content %}
- <img class="rounded-circle account-img" src="{{ user_prof.profile.profile.url }}" width="100%">
-</div>
-                    
- {{ user_prof.username }}
-
- {{user_posts.count}}
+<div class="container">
+    <h1>USERS PROFILE</h1>
+    {%for images in image%}
+    <div class="card" style="width: 18rem;">
+        <img src="{{images.image.url}}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h2> <b>{{images.image_name}}</b></h2>  
+          <p class="card-text">{{images.image_caption|safe}}</p>
+        </div>
+      </div>
     
- <h5>{{ user.profile.name }}</h5>
- {{ user.profile.bio }}
-
-        {% for image in user_posts %}
- <img src="{{image.image.url}}" alt="{{image.caption}}" class="card-img">
-{{image.comments.count}}
-        {% endfor %}
-    </div>
+      {%endfor%}   
 </div>
 
-{% endblock %}
+  
 
+  {% endblock %}

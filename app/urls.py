@@ -2,7 +2,7 @@ from django.urls import path
 from . import views
 from django.conf import settings
 from django.conf.urls.static import static
-from .views import user_profile,signup, profile,searchuser
+from .views import user_profile,signup, profile,searchuser,follow,unfollow
 
 
 urlpatterns = [
@@ -14,6 +14,8 @@ urlpatterns = [
     path('user_profile/<username>/', user_profile, name='user_profile'),
     path('profile/', profile, name='profile'),
     path('search/',views.searchuser ,name='searchuser'),
+    path('follow/<pk>', follow, name='follow'),
+    path('unfollow/<pk>',unfollow, name='unfollow'),
     
 	
 
