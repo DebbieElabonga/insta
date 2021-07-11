@@ -9,6 +9,7 @@ from django.contrib.auth import login, authenticate
 
 
 # Create your views here.
+@login_required(login_url='login')
 def welcome(request):
     posts = Post.objects.all()
     return render(request, 'index.html',{"posts":posts})
