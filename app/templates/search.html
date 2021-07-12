@@ -11,7 +11,9 @@
   <div class="row">
     {% if searched_profiles %}
     {% for profile in searched_profiles %}
-        {{profile.user}}
+       {{profile.user}}
+        print({{profile.user}})
+      
         <img src="{{profile.profile_photo.url}}" alt="" style="height: 25px;">
     {% endfor%}
     {% endif %}

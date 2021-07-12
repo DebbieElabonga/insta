@@ -1,11 +1,11 @@
 from django.shortcuts import render,redirect, get_object_or_404
 from .models import Profile, Post, Comment,Follow
 from django.contrib.auth.models import User
-from .forms import PostForm, SignUpForm, UserCreationForm, UpdateUserProfileForm
+from .forms import PostForm, SignUpForm, UserCreationForm, UpdateUserProfileForm,CommentForm
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate
-
+from django.http import HttpResponseRedirect
 
 
 # Create your views here.
@@ -16,7 +16,17 @@ def welcome(request):
 
 def comment(request,id):
     all_comments = Comment.get_comments(id)
-    return render(request, 'comments.html', {"comments":all_comments})
+    image = get_object_or_404(Post, id=id)
+    form = CommentForm(request.POST)
+    if form.is_valid():
+            comment = form.save(commit=False)
+            comment.post = image
+            comment.user = request.user.profile
+            comment.save()
+            return HttpResponseRedirect(request.path_info)
+    else:
+        form = CommentForm()
+    return render(request, 'comments.html', {"comments":all_comments, "form":form})
 
 # def user_profile(request, username):
 #     user_prof = get_object_or_404(User, username=username)
