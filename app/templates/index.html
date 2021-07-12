@@ -1,9 +1,13 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<div class="container">
 {{block.super}}
-<h1><b>HEY STRANGER</b></h1>
+
+<h1 class="text-center"><b>HEY STRANGER</b></h1>
+
 <div class="col-md-6">
+
 {% for post in posts %}
 
 
@@ -12,9 +16,20 @@
             alt="{{post.user.user.username}}" width="35" height="35">
         <p class="p-2">{{post.user.user.username}}</p><br>
     </div>
-    <img class="card-img-top" src="{{post.image.url}}" alt="{{post.name}}"width="200" height="200">
+    <img class="card-img-top" src="{{post.image.url}}" alt="{{post.name}}"width="500" height="400">
     <br>
    <b><i>This post has {{post.comments.count}}comments</i></b>
     {{comment.comment}}
+    <a href="{% url 'comments' post.id %}"><button type="button" class="btn btn-success">view comments</button></a> <br>
 {% endfor %}
+<div class="col-md-3">
+
+    {% for user in users %}
+    <div class="row p-1" style="width: 18rem; border: 1px solid grey;">
+        <img class="rounded-circle" src="{{ user.profile.profile.url }}" width="45px" height="45px">
+        <p><span><a href="{% url 'user_profile' user.username  %}">{{user.username}}</a></span></p>
+    </div>
+    {% endfor %}
+</div>
+</div>
 {% endblock %}

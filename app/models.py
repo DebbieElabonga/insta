@@ -20,11 +20,11 @@ class Profile(models.Model):
         return cls.objects.filter(user__username__icontains=name).all()
     def __str__(self):
         return self.user.username
-@receiver(post_save, sender=User)
-def update_user_profile(sender, instance, created, **kwargs):
-    if created:
-        Profile.objects.create(user=instance)
-    instance.profile.save()
+# @receiver(post_save, sender=User)
+# def update_user_profile(sender, instance, created, **kwargs):
+#     if created:
+#         Profile.objects.create(user=instance)
+#     instance.profile.save()
 
 
 class Post(models.Model):
@@ -78,7 +78,7 @@ class Comment(models.Model):
     
     @classmethod
     def get_comments(cls,image_id):
-        return cls.objects.filter(post__id=image_id).all()
+        return cls.objects.filter(post=image_id).all()
 
     class Meta:
         ordering = ["-pk"]
