@@ -12,7 +12,20 @@ from django.http import HttpResponseRedirect
 @login_required(login_url='login')
 def welcome(request):
     posts = Post.objects.all()
-    return render(request, 'index.html',{"posts":posts})
+    users = User.objects.exclude(id=request.user.id)
+    form = PostForm(request.POST or None, files=request.FILES)      
+    if form.is_valid():
+        post=form.save(commit=False)
+        post.user = request.user.profile
+        post.save()
+        return redirect('home')
+    context = {
+        'posts': posts,
+        'form': form,
+        'users':users,
+    }
+    # users = Profile.objects.all()
+    return render(request, 'index.html',context)
 
 def comment(request,id):
     all_comments = Comment.get_comments(id)

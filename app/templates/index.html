@@ -18,18 +18,17 @@
     </div>
     <img class="card-img-top" src="{{post.image.url}}" alt="{{post.name}}"width="500" height="400">
     <br>
+    <div class="container">
+        <b><p>CAPTION:{{post.caption}}</p></b>
+    </div>
    <b><i>This post has {{post.comments.count}}comments</i></b>
     {{comment.comment}}
     <a href="{% url 'comments' post.id %}"><button type="button" class="btn btn-light">view comments</button></a> <br>
+    
 {% endfor %}
 <div class="col-md-3">
 
-    {% for user in users %}
-    <div class="row p-1" style="width: 18rem; border: 1px solid grey;">
-        <img class="rounded-circle" src="{{ user.profile.profile.url }}" width="45px" height="45px">
-        <p><span><a href="{% url 'user_profile' user.username  %}">{{user.username}}</a></span></p>
-    </div>
-    {% endfor %}
+    
 </div>
 </div>
 {% endblock %}
