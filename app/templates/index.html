@@ -24,11 +24,15 @@
    <b><i>This post has {{post.comments.count}}comments</i></b>
     {{comment.comment}}
     <a href="{% url 'comments' post.id %}"><button type="button" class="btn btn-light">view comments</button></a> <br>
-    
+</div>
 {% endfor %}
 <div class="col-md-3">
-
+    {% for user in users %}
+    <div class="row p-1" style="width: 18rem; border: 1px solid grey;"></div>
+        <p><span><a href="{% url 'user_profile' user.username  %}">{{user.username}}</a></span></p>
+    </div>
+    {% endfor %}
     
-</div>
+
 </div>
 {% endblock %}
