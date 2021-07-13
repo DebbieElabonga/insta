@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
-<div class="container">
+
+<div class="container" style ="overflow: hidden;">
 {{block.super}}
 
 <h1 class="text-center"><b>HEY STRANGER</b></h1>
@@ -9,30 +10,32 @@
 <div class="col-md-6">
 
 {% for post in posts %}
-
-
+<li class="jumbotron " style="padding-left:40px ; list-style-type: none; background-color:#bc2a8d(112, 77, 240);">                 
+    <div class="card mb-8 bg-dark text-white">
+        <div class="card-body">
  <div class="row p-2 card-title">
         <img src="{{post.user.profile.url}}" class="rounded-circle border ml-3 mt-2  mr-3"
             alt="{{post.user.user.username}}" width="35" height="35">
-        <p class="p-2">{{post.user.user.username}}</p><br>
+            <p class="p-2">{{post.user.user.username}}</p><br>
     </div>
     <img class="card-img-top" src="{{post.image.url}}" alt="{{post.name}}"width="500" height="400">
     <br>
     <div class="container">
         <b><p>CAPTION:{{post.caption}}</p></b>
-    </div>
    <b><i>This post has {{post.comments.count}}comments</i></b>
     {{comment.comment}}
     <a href="{% url 'comments' post.id %}"><button type="button" class="btn btn-light">view comments</button></a> <br>
 </div>
+</li>
 {% endfor %}
+<h1>View Profiles</h1>
 <div class="col-md-3">
     {% for user in users %}
-    <div class="row p-1" style="width: 18rem; border: 1px solid grey;"></div>
+    <div class="row p-1" style="width: 18rem; border: 1px solid grey;">
+
         <p><span><a href="{% url 'user_profile' user.username  %}">{{user.username}}</a></span></p>
     </div>
     {% endfor %}
     
-
 </div>
 {% endblock %}
