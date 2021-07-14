@@ -32,7 +32,7 @@
 <div class="col-md-3">
     {% for user in users %}
     <div class="row p-1" style="width: 18rem; border: 1px solid grey;">
-
+        <img class="rounded-circle" src="{{ user.profile.profile.url }}" width="45px" height="45px">
         <p><span><a href="{% url 'user_profile' user.username  %}">{{user.username}}</a></span></p>
     </div>
     {% endfor %}

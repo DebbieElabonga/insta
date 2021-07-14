@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect, get_object_or_404
 from .models import Profile, Post, Comment,Follow
 from django.contrib.auth.models import User
-from .forms import PostForm, SignUpForm, UserCreationForm, UpdateUserProfileForm,CommentForm
+from .forms import PostForm, SignUpForm, UserCreationForm, UpdateUserProfileForm,CommentForm , UpdateUserForm
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate
@@ -87,17 +87,25 @@ def signup(request):
 
 @login_required(login_url='login')
 def profile(request):
+    try:
+        profile = request.user.profile
+    except Profile.DoesNotExist:
+        profile = Profile(user=request.user)
     images = request.user.profile.posts.all()
     if request.method == 'POST':
+        user_form = UpdateUserForm(request.POST, instance=request.user)
         prof_form = UpdateUserProfileForm(request.POST, request.FILES, instance=request.user.profile)
-        if prof_form.is_valid():
+        if user_form.is_valid() and prof_form.is_valid():
+            user_form.save()
             prof_form.save()
-            return redirect(request.path_info)
+            return HttpResponseRedirect(request.path_info)
     else:
+        user_form = UpdateUserForm(instance=request.user)
         prof_form = UpdateUserProfileForm(instance=request.user.profile)
     context = {
         'prof_form': prof_form,
         'images': images,
+        'user_form': user_form,
 
     }
     return render(request, 'profile.html', context)

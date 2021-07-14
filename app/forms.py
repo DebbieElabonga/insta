@@ -16,6 +16,11 @@ class SignUpForm(UserCreationForm):
         model = User
         fields = ('username',  'password1', 'password2', )
 
+class UpdateUserProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['user', 'profile', 'bio']
+
 class CommentForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -25,7 +30,7 @@ class CommentForm(forms.ModelForm):
         model = Comment
         fields = ('comment',)
 
-class UpdateUserProfileForm(forms.ModelForm):
+class UpdateUserForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ['profile', 'bio']

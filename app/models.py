@@ -10,7 +10,7 @@ from django.dispatch import receiver
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.TextField(max_length=500, blank=True, default='No bio')
-    profile = models.ImageField(upload_to='images/', default='')
+    profile = models.ImageField(upload_to='images/', default='default.jpeg')
     
     def save_profile(self):
         self.save()
