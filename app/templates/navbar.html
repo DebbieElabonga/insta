@@ -1,8 +1,7 @@
 {% load static %}
-
-<nav class="navbar navbar-expand-lg navbar-dark  pl-5 pr-5" style="background-color: #111110;">
-  <a class="navbar-brand" href="{% url 'index' %}" style="font-family: 'Redressed', cursive; font-size:32px">Instagram</a>
-  <a class="nav-item nav-link active text-white" href="{% url 'index' %}"></a>
+<nav class="navbar navbar-expand-lg navbar-dark  pl-5 pr-5" style="background-color: #a6bbc2;">
+  <a class="navbar-brand mb-0 h1 text-black" href="{% url 'index' %}" style="font-family: 'Redressed', cursive; font-size:32px">Instagram</a>
+  <a class="nav-item nav-link active text-black" href="{% url 'index' %}"></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
     aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -36,5 +35,6 @@
       <a class="nav-item nav-link active" href="{% url 'signup' %}"><i class="fas fa-user-plus"></i>Signup</a>
       {% endif %}
     </div>
-  </div>
+
 </nav>
+</div>
